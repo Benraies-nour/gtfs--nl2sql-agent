@@ -316,7 +316,7 @@ STYLE = """
 [data-testid="stChatMessageContent"] p,
 [data-testid="stChatMessageContent"] li,
 [data-testid="stChatMessageContent"] span {
-    font-size: 24px !important;
+    font-size: 22px !important;
     line-height: 1.5 !important;
 }
   [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {

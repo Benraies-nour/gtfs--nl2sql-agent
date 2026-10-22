@@ -6,7 +6,7 @@ from soretrak.config import ROOT
 
 from soretrak.contracts import Candidate
 from soretrak.places.normalize import normalize
-from soretrak.places.resolver import build_index, resolve_place
+from soretrak.places.resolver import get_index, resolve_place
 
 
 @pytest.mark.parametrize(
@@ -64,7 +64,7 @@ ORIGINAL_DB = ROOT / "data" / "soretrak_gtfs.db"
 def index():
     if not ORIGINAL_DB.exists():
         pytest.skip("data/soretrak_gtfs.db absente — lancer scripts/build_db.py d'abord")
-    return build_index(ORIGINAL_DB)
+    return get_index(ORIGINAL_DB)
 
 
 def test_index_covers_all_stops_and_routes(index):

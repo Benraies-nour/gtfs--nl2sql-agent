@@ -1,6 +1,10 @@
 """Streamlit interface, with a fake answer function (no network call)."""
+from pathlib import Path
+
 import pytest
 from streamlit.testing.v1 import AppTest
+
+APP_PY = str(Path(__file__).parent.parent / "app.py")
 
 from soretrak.conversation import graph
 from soretrak.contracts import Response
@@ -61,7 +65,7 @@ def calls(monkeypatch):
 
 
 def run_app():
-    at = AppTest.from_file("app.py", default_timeout=10)
+    at = AppTest.from_file(APP_PY, default_timeout=10)
     at.run()
     return at
 
@@ -86,7 +90,7 @@ def test_question_answer_and_how_panel(calls):
 
 
 def test_debug_mode_shows_sql(calls):
-    at = AppTest.from_file("app.py", default_timeout=10)
+    at = AppTest.from_file(APP_PY, default_timeout=10)
     at.query_params["debug"] = "1"
     at.run()
     at.chat_input[0].set_value("lignes à bab jdid").run()

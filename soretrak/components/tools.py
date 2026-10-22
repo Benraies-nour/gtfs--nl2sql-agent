@@ -1,4 +1,4 @@
-"""The 3 SQL Agent tools: their schema (sent to the LLM) and their execution.
+"""The 3 SQL Agent tools: their schema sent to the LLM and their execution.
 
 The LLM picks the tool and its arguments; the code runs it. A tool error
 is returned to the agent as a result, so that it can correct itself.

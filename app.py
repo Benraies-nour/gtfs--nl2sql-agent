@@ -37,23 +37,17 @@ def logo_html(filename: str, alt: str) -> str:
     return f'<img class="logo" src="data:image/png;base64,{data}" alt="{alt}">'
 
 
-WELCOME_VEIL = 0 # white veil over the (already light) background image: keeps the text readable
-
-
 @st.cache_resource
 def welcome_background_css() -> str:
-    """Welcome-screen background (assets/backgroundf.jpg): the whole background under the header,
-    anchored at the bottom (bus and robot), with a white veil."""
+    """Welcome-screen background (assets/backgroundf.jpg): the whole background under the header."""
     path = ASSETS / "backgroundf.jpg"
     if not path.exists():
         return ""
     data = base64.b64encode(path.read_bytes()).decode("ascii")
-    veil = f"rgba(255, 255, 255, {WELCOME_VEIL})"
     return (
         "<style>"
         # :not(:has(…)): the background disappears with the first bubble, without waiting for the answer
         '.stApp:not(:has([data-testid="stChatMessage"])) { background:'
-        f" linear-gradient({veil}, {veil}),"
         f" url('data:image/jpeg;base64,{data}') no-repeat center 70% / cover fixed,"
         " #fff; }"
         '[data-testid="stBottom"] > div { background: transparent; }'

@@ -1,6 +1,4 @@
 """Respond: a fixed message for every case without a data answer.
-
-No technical error is ever shown to the user.
 """
 from soretrak.contracts import AgentResult, ResolvedPlace
 

@@ -1,11 +1,4 @@
 """LLM gateway: a single OpenAI-compatible client (Groq or OpenAI).
-
-- structured(system, user, Model): JSON output validated by Pydantic,
-  one retry if invalid;
-- with_tools(messages, tools): one call that must pick a tool.
-
-Short retries on 429 and 5xx, one log line per call, and normalized errors
-(LLMRateLimitError, LLMError): the rest of the code never sees an SDK exception.
 """
 import json
 import logging

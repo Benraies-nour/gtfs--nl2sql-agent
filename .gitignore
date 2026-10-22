@@ -12,6 +12,10 @@ env/
 # Secrets
 .env
 
-# Data (download it, see README)
-data/gtfs/
+# Data
 data/*.db
+
+# Tools cache
+.mypy_cache/
+.pytest_cache/
+evals/results.md

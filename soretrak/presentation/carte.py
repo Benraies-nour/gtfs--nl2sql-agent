@@ -1,12 +1,4 @@
-"""On-demand map: stops and route, built by the code.
-
-From the resolved places of a question:
-- two stops → the direct line from A to B, the route between them, the intermediate stops;
-- one line → its full route and stops;
-- one stop → its location.
-
-Only 12 lines have a GPS route in the data (shapes table). For the others,
-the stops are joined in order and the map says so (trace = "approx").
+"""On-demand map
 """
 from pathlib import Path
 

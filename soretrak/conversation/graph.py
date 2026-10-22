@@ -35,7 +35,6 @@ class ConversationState(TypedDict, total=False):
     contexte: list[TurnContext]   # factual summary of the last transport turns
     # Current turn, reset on every message
     message: str
-    run_id: str
     decision: dict | None
     lieux_resolus: list[ResolvedPlace]
     agent: AgentRun | None
@@ -174,7 +173,7 @@ def answer(message: str, thread_id: str, graph=None) -> Response:
     run_id = uuid.uuid4().hex[:8]
     start = time.monotonic()
     state = graph.invoke(
-        {"message": message, "run_id": run_id, "decision": None, "lieux_resolus": [],
+        {"message": message, "decision": None, "lieux_resolus": [],
          "agent": None, "response": None},
         {"configurable": {"thread_id": thread_id}},
     )

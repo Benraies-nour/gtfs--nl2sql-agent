@@ -1,8 +1,5 @@
 """Place resolution: user text → stop or line.
 
-Deterministic Python, no LLM: index of stops and lines, fuzzy search
-(rapidfuzz) and a trouve / ambigu / introuvable decision. The returned
-candidates keep the raw database name; the SQL Agent chooses between them.
 """
 import re
 from dataclasses import dataclass
@@ -25,7 +22,7 @@ class IndexEntry:
     norm: str
 
 
-def build_index(db_path: str | Path) -> list[IndexEntry]:
+def _build_index(db_path: str | Path) -> list[IndexEntry]:
     """Read the stops and lines from the database and prepare their search forms."""
     stops = run_query("SELECT stop_id, stop_name FROM stops", db_path, max_rows=10_000)
     routes = run_query(
@@ -49,7 +46,7 @@ def build_index(db_path: str | Path) -> list[IndexEntry]:
 @lru_cache(maxsize=4)
 def get_index(db_path: str | Path) -> tuple[IndexEntry, ...]:
     """Index built once per database, then kept in memory."""
-    return tuple(build_index(db_path))
+    return tuple(_build_index(db_path))
 
 
 # Decision thresholds, tuned with evals/cases_places.yaml.

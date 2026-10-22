@@ -151,7 +151,14 @@ def build_graph():
     return graph.compile()
 
 
-_GRAPH = build_graph()
+_GRAPH = None
+
+
+def _get_graph():
+    global _GRAPH
+    if _GRAPH is None:
+        _GRAPH = build_graph()
+    return _GRAPH
 
 
 def run_sql_agent(
@@ -178,7 +185,7 @@ def run_sql_agent(
         "nb_tours": 0,
         "resultat": None,
     }
-    final = _GRAPH.invoke(state, {"recursion_limit": 2 * MAX_TURNS + 5})
+    final = _get_graph().invoke(state, {"recursion_limit": 2 * MAX_TURNS + 5})
     logger.info("sql_agent statut=%s appels=%s tours=%s", final["resultat"].statut,
                 final.get("nb_appels"), final.get("nb_tours"))
     return final

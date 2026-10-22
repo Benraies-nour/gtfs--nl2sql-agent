@@ -1,10 +1,4 @@
-"""Conversation memory: what is kept from one turn to the next, built by the code.
-
-- the context: a factual summary of the last turns (places, lines, stops involved),
-  passed to the Router to rewrite follow-up questions;
-- the clarification: matching the user's reply against the proposed candidates;
-- the confirmed entities: places chosen by the user, never asked again.
-
+"""
 The message history and persistence are handled by the graph (checkpointer).
 """
 from rapidfuzz import fuzz

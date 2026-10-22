@@ -1,9 +1,6 @@
 """Pre-retrieval: the places of the question, resolved by the code before the agent.
 
-resolve_mentions() resolves the places picked up by the Router and adds facts
-(lines at a stop, whether a line has timetables). format_lieux() and
-facts_query() present them to the agent: in its message, and as evidence q0
-that the Synthesizer can cite.
+
 """
 from pathlib import Path
 

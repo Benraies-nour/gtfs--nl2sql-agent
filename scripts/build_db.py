@@ -1,10 +1,4 @@
 """Rebuild data/soretrak_gtfs.db from the raw GTFS files.
-
-Idempotent: deletes the existing database, recreates the schema, imports the
-data while filtering orphan rows (a row referencing an unknown agency_id,
-route_id, service_id, trip_id or stop_id is dropped), then applies the views.
-
-Usage: python scripts/build_db.py
 """
 import csv
 import sqlite3
